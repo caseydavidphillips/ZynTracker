@@ -71,7 +71,7 @@
       text-align: left;
     }
 
-    input[type="date"], input[type="number"] {
+    input[type="date"], input[type="number"], input[type="time"] {
       width: 100%;
       background: var(--surface2);
       border: 1px solid var(--border);
@@ -83,8 +83,86 @@
       outline: none;
       transition: border-color 0.2s;
     }
-    input[type="date"]:focus, input[type="number"]:focus { border-color: var(--accent); }
-    input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.7); cursor: pointer; }
+    input[type="date"]:focus, input[type="number"]:focus, input[type="time"]:focus { border-color: var(--accent); }
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(0.7); cursor: pointer; }
+
+    .strength-group {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .strength-btn {
+      flex: 1;
+      padding: 0.55rem 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    /* noinspection CssUnusedSymbol */
+    .strength-btn.selected {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      color: var(--text);
+    }
+
+    .strength-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.18rem 0.55rem;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+
+    .schedule-section {
+      margin-top: 1rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      text-align: left;
+    }
+    .schedule-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+      font-weight: 600;
+    }
+    .schedule-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .schedule-list::-webkit-scrollbar { width: 4px; }
+    .schedule-list::-webkit-scrollbar-track { background: transparent; }
+    .schedule-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    /* noinspection CssUnusedSymbol */
+    .schedule-slot {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.83rem;
+      padding: 0.2rem 0;
+    }
+    /* noinspection CssUnusedSymbol */ .slot-time { color: var(--text); font-weight: 600; min-width: 5rem; }
+    /* noinspection CssUnusedSymbol */ .slot-icon-done { color: var(--success); font-size: 0.85rem; }
+    /* noinspection CssUnusedSymbol */ .slot-icon-next { color: var(--accent); font-size: 0.7rem; }
+    /* noinspection CssUnusedSymbol */ .slot-icon-upcoming { color: var(--border); font-size: 0.7rem; }
+
+    /* noinspection CssUnusedSymbol */ .pill-str-15 { background: #3d1010; color: var(--danger); }
+    /* noinspection CssUnusedSymbol */ .pill-str-12 { background: #3d2810; color: var(--orange); }
+    /* noinspection CssUnusedSymbol */ .pill-str-9  { background: #3d3010; color: var(--warn); }
+    /* noinspection CssUnusedSymbol */ .pill-str-6  { background: #1a2a40; color: #7ec8e3; }
+    /* noinspection CssUnusedSymbol */ .pill-str-3  { background: #1a3d2e; color: var(--success); }
 
     .btn {
       display: inline-flex;
@@ -114,6 +192,15 @@
       margin-top: 0.5rem;
     }
     .btn-outline:hover { border-color: var(--muted); color: var(--text); opacity: 1; }
+
+    #app {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
 
     /* Stats grid */
     .stats-grid {
@@ -146,9 +233,9 @@
       transition: color 0.3s;
     }
     .today-count.c-zero  { color: var(--success); }
-    .today-count.c-good  { color: var(--warn); }
-    .today-count.c-near  { color: var(--orange); }
-    .today-count.c-over  { color: var(--danger); }
+    /* noinspection CssUnusedSymbol */ .today-count.c-good  { color: var(--warn); }
+    /* noinspection CssUnusedSymbol */ .today-count.c-near  { color: var(--orange); }
+    /* noinspection CssUnusedSymbol */ .today-count.c-over  { color: var(--danger); }
 
     .allowance-sub {
       font-size: 0.88rem;
@@ -171,9 +258,9 @@
       transition: width 0.3s, background 0.3s;
     }
     .progress-fill.c-zero { background: var(--success); width: 100%; opacity: 0.25; }
-    .progress-fill.c-good { background: var(--warn); }
-    .progress-fill.c-near { background: var(--orange); }
-    .progress-fill.c-over { background: var(--danger); width: 100% !important; }
+    /* noinspection CssUnusedSymbol */ .progress-fill.c-good { background: var(--warn); }
+    /* noinspection CssUnusedSymbol */ .progress-fill.c-near { background: var(--orange); }
+    /* noinspection CssUnusedSymbol */ .progress-fill.c-over { background: var(--danger); width: 100% !important; }
 
     .today-date-label {
       font-size: 0.78rem;
@@ -221,6 +308,7 @@
     .history-list::-webkit-scrollbar-track { background: transparent; }
     .history-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
+    /* noinspection CssUnusedSymbol */
     .history-item {
       display: flex;
       align-items: center;
@@ -238,10 +326,10 @@
       border-radius: 20px;
       font-size: 0.78rem;
     }
-    .badge-zero { background: #1a3d2e; color: var(--success); }
-    .badge-low  { background: #3d3010; color: var(--warn); }
-    .badge-mid  { background: #3d2810; color: var(--orange); }
-    .badge-high { background: #3d1010; color: var(--danger); }
+    /* noinspection CssUnusedSymbol */ .badge-zero { background: #1a3d2e; color: var(--success); }
+    /* noinspection CssUnusedSymbol */ .badge-low  { background: #3d3010; color: var(--warn); }
+    /* noinspection CssUnusedSymbol */ .badge-mid  { background: #3d2810; color: var(--orange); }
+    /* noinspection CssUnusedSymbol */ .badge-high { background: #3d1010; color: var(--danger); }
 
     .empty-msg { color: var(--muted); font-size: 0.85rem; text-align: center; padding: 1rem 0; }
 
@@ -259,6 +347,7 @@
     .plan-list::-webkit-scrollbar-track { background: transparent; }
     .plan-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
+    /* noinspection CssUnusedSymbol */
     .plan-phase {
       display: flex;
       align-items: center;
@@ -270,22 +359,27 @@
       font-size: 0.82rem;
       transition: background 0.2s;
     }
+    /* noinspection CssUnusedSymbol */
     .plan-phase.past {
       opacity: 0.45;
       border-left-color: var(--border);
     }
+    /* noinspection CssUnusedSymbol */
     .plan-phase.current {
       background: #1e1f3a;
       border-left-color: var(--accent);
       opacity: 1;
     }
+    /* noinspection CssUnusedSymbol */
     .plan-phase.future {
       border-left-color: var(--border);
     }
+    /* noinspection CssUnusedSymbol */
     .plan-phase.quit-phase {
       border-left-color: var(--success);
       background: #0f2a1e;
     }
+    /* noinspection CssUnusedSymbol */
     .plan-phase.quit-phase.current {
       background: #143322;
       border-left-color: var(--success);
@@ -321,12 +415,9 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
-    .pill-high   { background: #3d1010; color: var(--danger); }
-    .pill-mid    { background: #3d2810; color: var(--orange); }
-    .pill-low    { background: #3d3010; color: var(--warn); }
-    .pill-tiny   { background: #1a2a40; color: #7ec8e3; }
-    .pill-quit   { background: #1a3d2e; color: var(--success); }
-    .pill-past   { background: var(--surface); color: var(--muted); }
+    /* noinspection CssUnusedSymbol */ .pill-low    { background: #3d3010; color: var(--warn); }
+    /* noinspection CssUnusedSymbol */ .pill-quit   { background: #1a3d2e; color: var(--success); }
+    /* noinspection CssUnusedSymbol */ .pill-past   { background: var(--surface); color: var(--muted); }
 
     .plan-current-tag {
       font-size: 0.68rem;
@@ -347,6 +438,26 @@
       .today-count { font-size: 3.5rem; }
       .stat-value  { font-size: 1.6rem; }
     }
+
+    @media (min-width: 860px) {
+      #app {
+        max-width: 960px;
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        grid-template-rows: auto auto auto auto auto;
+        gap: 1rem;
+        align-items: start;
+      }
+
+      .card      { max-width: none; }
+      .stats-grid { max-width: none; margin-bottom: 0; }
+
+      .today-card    { grid-column: 1; grid-row: 1 / 5; align-self: stretch; }
+      .stats-grid    { grid-column: 2; grid-row: 1; }
+      #historyCard   { grid-column: 2; grid-row: 2; margin-bottom: 0; }
+      #planCard      { grid-column: 2; grid-row: 3; margin-bottom: 0; }
+      .reset-section { grid-column: 1 / -1; grid-row: 5; max-width: none; }
+    }
   </style>
 </head>
 <body>
@@ -357,16 +468,29 @@
   <!-- SETUP -->
   <div class="card" id="setup">
     <h2>Start your journey</h2>
-    <p>Enter the date you want to be completely free, and how many pouches you're using now. We'll build a tapering plan that gets you there.</p>
-    <label for="quitDate">Target quit date</label>
+    <p>Tell us your current habit, and we'll build a personalized taper plan that steps you down to freedom.</p>
+    <label for="quitDate">Target quit date <span style="color:var(--muted);font-weight:400">(7–14 days from today)</span></label>
     <input type="date" id="quitDate" />
+    <label>Starting strength</label>
+    <div class="strength-group" id="strengthGroup">
+      <button class="strength-btn" data-mg="3"  onclick="selectStrength(3)">3mg</button>
+      <button class="strength-btn" data-mg="6"  onclick="selectStrength(6)">6mg</button>
+      <button class="strength-btn" data-mg="9"  onclick="selectStrength(9)">9mg</button>
+      <button class="strength-btn" data-mg="12" onclick="selectStrength(12)">12mg</button>
+      <button class="strength-btn" data-mg="15" onclick="selectStrength(15)">15mg</button>
+    </div>
+    <input type="hidden" id="strengthVal" value="" />
     <label for="dailyAvg">Average pouches per day (right now)</label>
     <input type="number" id="dailyAvg" min="1" max="50" placeholder="e.g. 10" />
+    <label for="wakeTime">Wake time</label>
+    <input type="time" id="wakeTime" value="07:00" />
+    <label for="sleepTime">Sleep time</label>
+    <input type="time" id="sleepTime" value="22:00" />
     <button class="btn" onclick="startJourney()">Let's do this</button>
   </div>
 
   <!-- MAIN APP -->
-  <div id="app" class="hidden" style="width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;gap:0;">
+  <div id="app" class="hidden">
 
     <div class="stats-grid">
       <div class="stat-card highlight">
@@ -391,19 +515,24 @@
       <div class="today-date-label" id="todayDate"></div>
       <div class="today-count c-zero" id="todayCount">0</div>
       <div class="allowance-sub" id="allowanceSub"></div>
+      <div id="strengthBadge" class="strength-badge" style="display:none"></div>
       <div class="progress-wrap">
         <div class="progress-fill c-zero" id="progressFill" style="width:100%"></div>
       </div>
       <button class="btn add-btn" onclick="addPouch()">+ Had a pouch</button>
       <button class="undo-btn" id="undoBtn" onclick="undoPouch()" disabled>Undo last</button>
+      <div class="schedule-section" id="scheduleSection" style="display:none">
+        <div class="schedule-title">Today's Schedule</div>
+        <ul class="schedule-list" id="scheduleList"></ul>
+      </div>
     </div>
 
-    <div class="card" style="width:100%;">
+    <div class="card" id="historyCard">
       <div class="card-title">Recent history</div>
       <ul class="history-list" id="historyList"></ul>
     </div>
 
-    <div class="card" style="width:100%;">
+    <div class="card" id="planCard">
       <div class="card-title">Your quit plan</div>
       <ul class="plan-list" id="planList"></ul>
     </div>
@@ -416,8 +545,14 @@
 
   <script>
     const PRICE_PER_POUCH = 0.75;
-    const PHASE_DAYS = 7;
     const STORAGE_KEY = "zyn_tracker";
+    const STRENGTH_STEPS = [3, 6, 9, 12, 15];
+
+    function selectStrength(mg) {
+      document.getElementById("strengthVal").value = mg;
+      document.querySelectorAll(".strength-btn").forEach(btn =>
+        btn.classList.toggle("selected", parseInt(btn.dataset.mg) === mg));
+    }
 
     function getState() {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -436,45 +571,70 @@
       return d.toISOString().slice(0, 10);
     }
 
-    function fmtDate(ds) {
+    function formatDate(ds) {
       return new Date(ds + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" });
     }
 
-    // Build taper phases from startDate to quitDate, halving allowance each phase.
-    // Phases are sized evenly to exactly fill the window; the quit phase starts on quitDate.
-    function buildPlan(startDateStr, quitDateStr, dailyAvg) {
-      // Build the halving sequence down to 1
-      const halvings = [];
+    // Build taper phases: Stage 1 steps down strength (keeping count constant),
+    // Stage 2 halves the count at 3mg until 1, then quit on quitDate.
+    function buildPlan(startDateStr, quitDateStr, dailyAvg, strength) {
+      // Stage 1: strength steps from starting mg down to 3mg (count = dailyAvg)
+      const strengthPhases = STRENGTH_STEPS.filter(s => s <= strength).reverse()
+        .map(mg => ({ strength: mg, allowed: dailyAvg }));
+
+      // Stage 2: halve count at 3mg starting from dailyAvg (first entry replaces the 3mg phase from stage 1)
+      const countSteps = [];
       let val = dailyAvg;
       while (val > 0) {
-        halvings.push(val);
+        countSteps.push(val);
         val = val === 1 ? 0 : Math.ceil(val / 2);
       }
+      const countPhases = countSteps.map(c => ({ strength: 3, allowed: c }));
+
+      // Merge: drop the last strength phase (3mg at dailyAvg) and use countPhases instead
+      const allPhases = [...strengthPhases.slice(0, -1), ...countPhases];
+      const numPhases = allPhases.length;
 
       const startDate = new Date(startDateStr + "T00:00:00");
       const quitDate  = new Date(quitDateStr  + "T00:00:00");
       const totalDays = Math.round((quitDate - startDate) / 86400000);
-      const numPhases = halvings.length;
 
-      // Distribute days evenly; spread any remainder across the first phases
       const baseDays  = Math.max(1, Math.floor(totalDays / numPhases));
       const extraDays = Math.max(0, totalDays - baseDays * numPhases);
 
       const phases = [];
       let cursor = new Date(startDate);
 
-      halvings.forEach((allowed, i) => {
+      allPhases.forEach(({ strength: mg, allowed }, i) => {
         const days = baseDays + (i < extraDays ? 1 : 0);
         const end  = new Date(cursor);
         end.setDate(end.getDate() + days - 1);
-        phases.push({ allowed, start: dateStr(cursor), end: dateStr(end) });
+        phases.push({ strength: mg, allowed, start: dateStr(cursor), end: dateStr(end) });
         cursor = new Date(end);
         cursor.setDate(cursor.getDate() + 1);
       });
 
-      // Quit phase starts exactly on the target quit date
-      phases.push({ allowed: 0, start: quitDateStr, end: null });
+      phases.push({ strength: 0, allowed: 0, start: quitDateStr, end: null });
       return phases;
+    }
+
+    function buildDailySchedule(wakeTime, sleepTime, count) {
+      if (count === 0) return [];
+      const toMins = timeStr => { const [h, m] = timeStr.split(":").map(Number); return h * 60 + m; };
+      const formatTime = t => {
+        const total = Math.round(t);
+        const h24 = Math.floor(total / 60) % 24;
+        const m = total % 60;
+        const suffix = h24 < 12 ? "am" : "pm";
+        const h12 = h24 % 12 || 12;
+        return `${h12}:${String(m).padStart(2, "0")}${suffix}`;
+      };
+      const first = toMins(wakeTime) + 60;
+      const last  = toMins(sleepTime) - 180;
+      if (last <= first) return Array(count).fill(formatTime(first));
+      if (count === 1) return [formatTime(first)];
+      const interval = (last - first) / (count - 1);
+      return Array.from({ length: count }, (_, i) => formatTime(first + interval * i));
     }
 
     function getCurrentPhaseIndex(phases, today) {
@@ -484,13 +644,11 @@
       return phases.length - 1;
     }
 
-    function pillClass(allowed, dailyAvg) {
-      if (allowed === 0) return "pill-quit";
-      const ratio = allowed / dailyAvg;
-      if (ratio > 0.6) return "pill-high";
-      if (ratio > 0.3) return "pill-mid";
-      if (ratio > 0.1) return "pill-low";
-      return "pill-tiny";
+    function pillClass(strength, isPast) {
+      if (isPast) return "pill-past";
+      if (strength === 0) return "pill-quit";
+      return { 15: "pill-str-15", 12: "pill-str-12", 9: "pill-str-9",
+                6: "pill-str-6",   3: "pill-str-3" }[strength] || "pill-low";
     }
 
     function countColorClass(count, allowed) {
@@ -502,12 +660,38 @@
     }
 
     function startJourney() {
-      const dateInput = document.getElementById("quitDate").value;
-      const avgInput = parseInt(document.getElementById("dailyAvg").value, 10);
+      const dateInput   = document.getElementById("quitDate").value;
+      const strengthVal = parseInt(document.getElementById("strengthVal").value, 10);
+      const avgInput    = parseInt(document.getElementById("dailyAvg").value, 10);
+      const wakeTime    = document.getElementById("wakeTime").value;
+      const sleepTime   = document.getElementById("sleepTime").value;
+
+      const today = todayStr();
+      const todayDate = new Date(today + "T00:00:00");
+      const minDate   = new Date(todayDate); minDate.setDate(minDate.getDate() + 7);
+      const maxDate   = new Date(todayDate); maxDate.setDate(maxDate.getDate() + 14);
+
       if (!dateInput) { alert("Please pick a target quit date."); return; }
-      if (dateInput <= todayStr()) { alert("Target quit date must be in the future."); return; }
+      const chosen = new Date(dateInput + "T00:00:00");
+      if (chosen < minDate || chosen > maxDate) {
+        alert("Quit date must be 7–14 days from today."); return;
+      }
+      if (!strengthVal || !STRENGTH_STEPS.includes(strengthVal)) {
+        alert("Please select a starting strength."); return;
+      }
       if (!avgInput || avgInput < 1) { alert("Please enter your average daily usage."); return; }
-      const state = { startDate: todayStr(), quitDate: dateInput, dailyAvg: avgInput, log: {} };
+      if (!wakeTime)  { alert("Please enter your wake time."); return; }
+      if (!sleepTime) { alert("Please enter your sleep time."); return; }
+
+      const state = {
+        startDate: today,
+        quitDate:  dateInput,
+        dailyAvg:  avgInput,
+        strength:  strengthVal,
+        wakeTime,
+        sleepTime,
+        log: {}
+      };
       saveState(state);
       showApp(state);
     }
@@ -529,9 +713,10 @@
       const todayCount = state.log[today] ?? 0;
 
       // Build plan and find current allowance
-      const phases = buildPlan(state.startDate, state.quitDate, state.dailyAvg);
+      const phases = buildPlan(state.startDate, state.quitDate, state.dailyAvg, state.strength);
       const phaseIdx = getCurrentPhaseIndex(phases, today);
       const allowed = phases[phaseIdx].allowed;
+      const currentStrength = phases[phaseIdx].strength;
 
       // Streak (consecutive days at or under allowance going back from today)
       let streak = 0;
@@ -553,10 +738,10 @@
       const moneySaved = (avoided * PRICE_PER_POUCH).toFixed(0);
 
       // Stats
-      document.getElementById("dayCount").textContent = daysSince;
-      document.getElementById("streakCount").textContent = streak;
+      document.getElementById("dayCount").textContent = String(daysSince);
+      document.getElementById("streakCount").textContent = String(streak);
       document.getElementById("streakFire").textContent = streak >= 3 ? "🔥" : "";
-      document.getElementById("totalAvoided").textContent = avoided;
+      document.getElementById("totalAvoided").textContent = String(avoided);
       document.getElementById("moneySaved").textContent = "$" + moneySaved;
 
       // Today card
@@ -566,6 +751,16 @@
       const tc = document.getElementById("todayCount");
       tc.textContent = todayCount;
       tc.className = "today-count " + cc;
+
+      // Strength badge
+      const badge = document.getElementById("strengthBadge");
+      if (currentStrength > 0) {
+        badge.style.display = "inline-block";
+        badge.textContent = currentStrength + "mg pouches";
+        badge.className = "strength-badge " + pillClass(currentStrength, false);
+      } else {
+        badge.style.display = "none";
+      }
 
       // Allowance sub-text
       const sub = document.getElementById("allowanceSub");
@@ -579,7 +774,7 @@
           ? `<strong>${allowed}</strong> pouches allowed today`
           : todayCount > allowed
             ? `<strong style="color:var(--danger)">${todayCount - allowed} over</strong> your limit of ${allowed}`
-            : `<strong>${remaining}</strong> remaining of ${allowed} allowed`;
+            : `<strong>${remaining}</strong> of ${allowed} left today`;
       }
 
       // Progress bar
@@ -594,6 +789,26 @@
       }
 
       document.getElementById("undoBtn").disabled = todayCount === 0;
+
+      // Daily schedule
+      const scheduleSection = document.getElementById("scheduleSection");
+      const scheduleList    = document.getElementById("scheduleList");
+      scheduleList.innerHTML = "";
+      if (allowed > 0 && state.wakeTime && state.sleepTime) {
+        scheduleSection.style.display = "block";
+        buildDailySchedule(state.wakeTime, state.sleepTime, allowed).forEach((t, idx) => {
+          const li = document.createElement("li");
+          li.className = "schedule-slot";
+          let iconCls, iconChr;
+          if (idx < todayCount)       { iconCls = "slot-icon-done";     iconChr = "✓"; }
+          else if (idx === todayCount) { iconCls = "slot-icon-next";     iconChr = "▶"; }
+          else                         { iconCls = "slot-icon-upcoming"; iconChr = "·"; }
+          li.innerHTML = `<span class="slot-time">${t}</span> <span class="${iconCls}">${iconChr}</span>`;
+          scheduleList.appendChild(li);
+        });
+      } else {
+        scheduleSection.style.display = "none";
+      }
 
       // History
       const list = document.getElementById("historyList");
@@ -624,16 +839,16 @@
             badgeText = count + " pouches";
           }
           const dateLabel = new Date(ds + "T00:00:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
-          li.innerHTML = `<span class="history-date">${dateLabel}</span><span class="${badgeClass}">${badgeText}</span>`;
+          li.innerHTML = `<span class="history-date">${dateLabel}</span> <span class="${badgeClass}">${badgeText}</span>`;
           list.appendChild(li);
         });
       }
 
       // Quit plan
-      renderPlan(phases, phaseIdx, state.dailyAvg, today);
+      renderPlan(phases, phaseIdx);
     }
 
-    function renderPlan(phases, currentIdx, dailyAvg, today) {
+    function renderPlan(phases, currentIdx) {
       const list = document.getElementById("planList");
       list.innerHTML = "";
 
@@ -641,7 +856,7 @@
         const li = document.createElement("li");
         const isPast    = i < currentIdx;
         const isCurrent = i === currentIdx;
-        const isQuit    = phase.allowed === 0;
+        const isQuit    = phase.strength === 0 && phase.allowed === 0;
 
         let phaseClass = isQuit ? "plan-phase quit-phase" : "plan-phase";
         if (isPast) phaseClass += " past";
@@ -658,18 +873,18 @@
         // Date range label
         let dateRange;
         if (isQuit) {
-          dateRange = fmtDate(phase.start) + " onwards";
+          dateRange = formatDate(phase.start) + " onwards";
         } else {
-          dateRange = fmtDate(phase.start) + " – " + fmtDate(phase.end);
+          dateRange = formatDate(phase.start) + " – " + formatDate(phase.end);
         }
 
-        // Phase name
-        const phaseName = isQuit ? "Quit!" : `Phase ${i + 1}`;
+        // Phase name: show strength + count so 3mg phases at different counts are distinct
+        const phaseName = isQuit ? "Quit!" : phase.strength + "mg — " + phase.allowed + "/day";
         const currentTag = isCurrent ? '<span class="plan-current-tag">now</span>' : "";
 
         // Pill
-        const pc = isPast ? "pill-past" : pillClass(phase.allowed, dailyAvg);
-        const pillText = isQuit ? "0 / day — free!" : phase.allowed + (phase.allowed === 1 ? " pouch/day" : " pouches/day");
+        const pc = pillClass(phase.strength, isPast);
+        const pillText = isQuit ? "Free!" : phase.strength + "mg";
 
         li.innerHTML = `
           <span class="phase-status">${icon}</span>
@@ -715,17 +930,20 @@
 
     // Init
     let state = getState();
-    // Migrate old format (startDate was stored as quitDate, no targetQuitDate)
-    if (state && !state.startDate) {
+    // Force re-setup if new required fields are absent
+    if (state && (state.strength == null || !state.wakeTime || !state.sleepTime)) {
       localStorage.removeItem(STORAGE_KEY);
       state = null;
     }
     if (state) {
       showApp(state);
     } else {
-      // Default target quit date to 4 weeks from today
-      const def = new Date(); def.setDate(def.getDate() + 28);
-      document.getElementById("quitDate").value = dateStr(def);
+      const now = new Date();
+      const minD = new Date(now); minD.setDate(minD.getDate() + 7);
+      const maxD = new Date(now); maxD.setDate(maxD.getDate() + 14);
+      const defD = new Date(now); defD.setDate(defD.getDate() + 10);
+      const qi = document.getElementById("quitDate");
+      qi.min = dateStr(minD); qi.max = dateStr(maxD); qi.value = dateStr(defD);
     }
   </script>
 </body>
